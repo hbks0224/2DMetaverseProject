@@ -32,7 +32,7 @@ public class Dialog : MonoBehaviour
             Debug.Log("플레이어 들어옴");
             Check_F.SetActive(true); //플레이어와의 트리거 작동시 ui 켜주기
 
-            if (Input.GetKey(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.F))
             {
                 Debug.Log("F Input Check");
                 //DialogUI.SetActive(true);
@@ -40,7 +40,15 @@ public class Dialog : MonoBehaviour
                 {
                     go.SetActive(true);
 
+
+                    
+
                 }
+                //if (Check_F.activeSelf && Check_List[0].activeSelf && Check_List[1].activeSelf)
+                //{
+
+                //    Check_F.SetActive(false);
+                //}
 
             }
 
@@ -55,7 +63,7 @@ public class Dialog : MonoBehaviour
         {
             Debug.Log("플레이어 나감");
             Check_F.SetActive(false); //플레이어가 벗어나면 끄기
-                                      //DialogUI.SetActive(false);
+            //DialogUI.SetActive(false);
 
             foreach (GameObject go in Check_List)
             {
