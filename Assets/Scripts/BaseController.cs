@@ -5,11 +5,13 @@ using UnityEngine;
 public class BaseController : MonoBehaviour
 {
     protected Rigidbody2D _rigidbody; // 이동하기 위해 필요한 물리 컴포넌트 선언
-    [SerializeField] private SpriteRenderer characterRenderer;
+    [SerializeField] public SpriteRenderer characterRenderer;
     protected Vector2 movementDirection = Vector2.zero;
     public Vector2 MovementDirection { get { return movementDirection; } }
 
-    public float jumpforce = 5f; //점프력
+    //public float jumpforce = 1000f; //점프력
+   
+    
 
     protected virtual void Awake()
     {
@@ -26,12 +28,12 @@ public class BaseController : MonoBehaviour
     protected virtual void FixedUpdate()
     {
         Movment(movementDirection);
-
+        //Jump();
     }
 
     private void Movment(Vector2 direction)
     {
-        direction = direction * 5;
+        direction = direction * 8;
 
 
         _rigidbody.velocity = direction;
@@ -59,6 +61,11 @@ public class BaseController : MonoBehaviour
 
     }
 
+    //protected virtual void Jump()
+    //{
+
+
+    //}
 
 
 }

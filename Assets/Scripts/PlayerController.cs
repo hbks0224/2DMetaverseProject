@@ -5,12 +5,13 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : BaseController //베이스 컨트롤러 상속
 {
-
-
+    
+    
     protected override void Start()
     {
 
         base.Start();
+        
 
     }
 
@@ -23,22 +24,38 @@ public class PlayerController : BaseController //베이스 컨트롤러 상속
         //방향 백터 정규화 (대각선 속도 보정)
         movementDirection = new Vector2(horizontal, vertical).normalized;
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Debug.Log("SpaceCheck"); //확인용
-            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, jumpforce); //점프
-            
-        }
-    }
 
-    //void OnMove(InputValue inputValue)
-    //{
-    //    // 입력된 방향 값을 벡터로 받아옴 (WASD 등)
-    //    movementDirection = inputValue.Get<Vector2>();
-    //    // 대각선 이동 시 속도 일정하게 유지하기 위해 정규화
-    //    movementDirection = movementDirection.normalized;
-    //}
+
+        // 중복 입력을 방지하기 위한 조건
+        if (Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
+        {
+            characterRenderer.flipX = true;
+        }
+        else if (Input.GetKey(KeyCode.D) && !Input.GetKey(KeyCode.A))
+        {
+            characterRenderer.flipX = false;
+        }
+
+
+
+    }
 
 
 
 }
+
+    //protected override void Jump()  잠시 보류
+    //{
+
+    //    if (Input.GetKeyDown(KeyCode.Space))
+    //    {
+    //        Debug.Log("SpaceCheck"); //확인용
+    //        _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, jumpforce); //점프
+
+    //    }
+    //}
+
+
+
+
+
