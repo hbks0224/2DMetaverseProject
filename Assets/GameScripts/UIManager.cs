@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
 
-         PlayerPrefs.DeleteAll();
+        // PlayerPrefs.DeleteAll();
 
         if (restartText == null)
         {
@@ -88,7 +88,7 @@ public class UIManager : MonoBehaviour
     public void UpdateScore(int score)
     {
 
-        //scoreText.text = score.ToString();
+        scoreText.text = score.ToString();
         
 
         if (score > bestScore)
