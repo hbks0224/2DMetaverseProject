@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class Dialog : MonoBehaviour
 {
@@ -22,6 +24,13 @@ public class Dialog : MonoBehaviour
         
         }
 
+        Debug.Log("Check_List ³»¿ë:");
+        for (int i = 0; i < Check_List.Count; i++)
+        {
+            Debug.Log($"[{i}] {Check_List[i].name}");
+            Check_List[i].SetActive(false);
+        }
+
     }
 
     private void OnTriggerStay2D(Collider2D other)          
@@ -39,21 +48,58 @@ public class Dialog : MonoBehaviour
                 foreach (GameObject go in Check_List)
                 {
                     go.SetActive(true);
+
+                    if (go.name == "NPC_Dwarf_Sad")
+                    {
+
+
+                        go.SetActive(false);
+                    }
                 }
                 if (Check_F.activeSelf)
                 {
                     Check_F.SetActive(false);
+                    
                      
                 }
-    
-                //if (Check_F.activeSelf && Check_List[0].activeSelf && Check_List[1].activeSelf)
-                //{
 
-                //    Check_F.SetActive(false);
-                //}
+                
+
 
             }
 
+
+
+
+            if (Input.GetKeyDown(KeyCode.N) &&!Check_F.activeSelf)
+            {
+                foreach (GameObject go in Check_List)
+                {
+                    go.SetActive(false);
+
+
+                    if (go.name == "NPC_Dwarf_Sad")
+                    {
+
+
+                        go.SetActive(true);
+                    }
+
+
+
+                }
+
+            }
+
+            if (Input.GetKeyDown(KeyCode.Y)&& !Check_F.activeSelf)
+            {
+
+                SceneManager.LoadScene("GameScene");
+
+
+
+
+            }
         }
         
 
@@ -84,6 +130,15 @@ public class Dialog : MonoBehaviour
         }
     }
 
+
+    private void Update()
+    {
+
+
+
+            
+
+    }
 
     //private void YesOrNo()
     //{
