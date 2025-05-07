@@ -13,11 +13,12 @@ public class Dialog : MonoBehaviour
     //public GameObject DialogUI;
 
     public List<GameObject> Check_List;
-
+    bool active_F = false; //F가 켜진걸 확인하는 변수
     void Start()
     {
         //일단 꺼둠
         Check_F.SetActive(false); //F 팝업
+        Debug.Log("F Off");
 
         foreach (GameObject go in Check_List) 
         { 
@@ -33,10 +34,12 @@ public class Dialog : MonoBehaviour
         }
 
     }
+
+
     private void Update()
     {
 
-        if (Check_F.activeSelf) 
+        if (Check_F ==true) 
         {
             //Debug.Log("플레이어 들어옴");
             //플레이어와의 트리거 작동시 ui 켜주기
@@ -57,10 +60,11 @@ public class Dialog : MonoBehaviour
                         go.SetActive(false);
                     }
                 }
-                if (Check_F.activeSelf)
+                if (Check_F == true)
                 {
                     Check_F.SetActive(false);
-
+                    active_F = false;
+                    Debug.Log("F off");
 
                 }
 
@@ -77,7 +81,7 @@ public class Dialog : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.N) )
         {
-            if (!Check_F.activeSelf)
+            if (active_F == false)
             {
 
                 Debug.Log("dddd");
@@ -111,7 +115,7 @@ public class Dialog : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Y) )
         {
-            if (!Check_F.activeSelf)
+            if (active_F == false)
             {
                 Debug.Log("input Y");
                 //SceneManager.LoadScene("GameScene");
@@ -217,6 +221,8 @@ public class Dialog : MonoBehaviour
             if(Check_F != null)
             {
                 Check_F.SetActive(false); //플레이어가 벗어나면 끄기
+                active_F = false;
+                Debug.Log("F Off");
 
             }
 
@@ -240,7 +246,8 @@ public class Dialog : MonoBehaviour
         if ( collision.CompareTag("Player"))
         {
             Check_F.SetActive(true);
-
+            active_F = true;
+            Debug.Log("F On");
         }
     }
 
