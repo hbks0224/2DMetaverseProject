@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -32,17 +33,17 @@ public class Dialog : MonoBehaviour
         }
 
     }
-
-    private void OnTriggerStay2D(Collider2D other)          
+    private void Update()
     {
-        if (other.CompareTag("Player") ) //태그가 플레이어면
+
+        if (Check_F.activeSelf) 
         {
-            Debug.Log("플레이어 들어옴");
+            //Debug.Log("플레이어 들어옴");
             //플레이어와의 트리거 작동시 ui 켜주기
-           // Check_F.SetActive(true);
+            // Check_F.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F))
             {
-                
+
                 Debug.Log("F Input Check");
                 //DialogUI.SetActive(true);
                 foreach (GameObject go in Check_List)
@@ -59,8 +60,8 @@ public class Dialog : MonoBehaviour
                 if (Check_F.activeSelf)
                 {
                     Check_F.SetActive(false);
-                    
-                     
+
+
                 }
 
                 
@@ -71,8 +72,15 @@ public class Dialog : MonoBehaviour
 
 
 
-            if (Input.GetKeyDown(KeyCode.N) &&!Check_F.activeSelf)
+        }
+
+
+        if (Input.GetKeyDown(KeyCode.N) )
+        {
+            if (!Check_F.activeSelf)
             {
+
+                Debug.Log("dddd");
                 foreach (GameObject go in Check_List)
                 {
                     go.SetActive(false);
@@ -91,16 +99,112 @@ public class Dialog : MonoBehaviour
 
             }
 
-            if (Input.GetKeyDown(KeyCode.Y)&& !Check_F.activeSelf)
+            else
             {
 
-                SceneManager.LoadScene("GameScene");
+                Debug.Log("Not Input N");
+
+            }
+
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.Y) )
+        {
+            if (!Check_F.activeSelf)
+            {
+                Debug.Log("input Y");
+                //SceneManager.LoadScene("GameScene");
+
 
 
 
 
             }
+
+            else
+            {
+
+                Debug.Log("Not Input Y");
+
+            }
+
+
         }
+
+
+
+    }
+
+
+    private void OnTriggerStay2D(Collider2D other)          
+    {
+        //if (other.CompareTag("Player") ) //태그가 플레이어면
+        //{
+        //    Debug.Log("플레이어 들어옴");
+        //    //플레이어와의 트리거 작동시 ui 켜주기
+        //   // Check_F.SetActive(true);
+        //    if (Input.GetKeyDown(KeyCode.F))
+        //    {
+                
+        //        Debug.Log("F Input Check");
+        //        //DialogUI.SetActive(true);
+        //        foreach (GameObject go in Check_List)
+        //        {
+        //            go.SetActive(true);
+
+        //            if (go.name == "NPC_Dwarf_Sad")
+        //            {
+
+
+        //                go.SetActive(false);
+        //            }
+        //        }
+        //        if (Check_F.activeSelf)
+        //        {
+        //            Check_F.SetActive(false);
+                    
+                     
+        //        }
+
+                
+
+
+        //    }
+
+
+
+
+        //    if (Input.GetKeyDown(KeyCode.N) &&!Check_F.activeSelf)
+        //    {
+        //        foreach (GameObject go in Check_List)
+        //        {
+        //            go.SetActive(false);
+
+
+        //            if (go.name == "NPC_Dwarf_Sad")
+        //            {
+
+
+        //                go.SetActive(true);
+        //            }
+
+
+
+        //        }
+
+        //    }
+
+        //    if (Input.GetKeyDown(KeyCode.Y)&& !Check_F.activeSelf)
+        //    {
+
+        //        SceneManager.LoadScene("GameScene");
+
+
+
+
+        //    }
+        //}
         
 
     }
@@ -110,12 +214,22 @@ public class Dialog : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("플레이어 나감");
-            Check_F.SetActive(false); //플레이어가 벗어나면 끄기
+            if(Check_F != null)
+            {
+                Check_F.SetActive(false); //플레이어가 벗어나면 끄기
+
+            }
+
             //DialogUI.SetActive(false);
 
             foreach (GameObject go in Check_List)
             {
-                go.SetActive(false);
+
+                if (go != null)
+                {
+                    go.SetActive(false);
+
+                }
 
             }
         }
@@ -131,14 +245,7 @@ public class Dialog : MonoBehaviour
     }
 
 
-    private void Update()
-    {
 
-
-
-            
-
-    }
 
     //private void YesOrNo()
     //{
