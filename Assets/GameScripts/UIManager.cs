@@ -24,7 +24,7 @@ public class UIManager : MonoBehaviour
     {
 
         // 아래 코드는 저장된 정보를 초기화 할 때 사용
-        PlayerPrefs.DeleteAll();
+       // PlayerPrefs.DeleteAll();
 
         if (restartText == null)
         {
