@@ -9,9 +9,6 @@ public class BackUpDialog : MonoBehaviour
 {
 
     public GameObject Check_F; 
-    //public GameObject Check_Y_or_N;
-    //public GameObject DialogUI;
-
     public List<GameObject> Check_List;
     bool active_F = false; //F가 켜진걸 확인하는 변수
     bool isPlayerIn = false; // 플레이어가 대화 범위내에 들어왔는지 확인하는 변수
